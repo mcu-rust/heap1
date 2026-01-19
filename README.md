@@ -24,7 +24,7 @@ Using static global allocator:
 use heap1::{Heap, Inline};
 
 #[global_allocator]
-static HEAP: Heap<Inline<100>> = Heap::new();
+static HEAP: Heap<Inline<4096>> = Heap::new();
 ```
 
 You can also initialize the global allocator in two steps to meet specific requirements:
@@ -38,7 +38,7 @@ static HEAP: Heap<Pointer> = Heap::empty();
 
 fn main() {
     // Initialize the allocator BEFORE you use it
-    const HEAP_SIZE: usize = 100;
+    const HEAP_SIZE: usize = 4096;
     static mut HEAP_MEM: [MaybeUninit<u8>; HEAP_SIZE] = [MaybeUninit::uninit(); HEAP_SIZE];
     unsafe { HEAP.init_with_ptr(&raw mut HEAP_MEM as usize, HEAP_SIZE) }
 }
@@ -52,7 +52,7 @@ Create a local allocator on stack.
 use heap1::{Heap, Inline};
 
 fn foo() {
-    let heap = Heap::<Inline::<100>>::new();
+    let heap = Heap::<Inline::<64>>::new();
 }
 ```
 
