@@ -1,5 +1,9 @@
 # Heap1
 
+[![CI](https://github.com/mcu-rust/heap1/workflows/CI/badge.svg)](https://github.com/mcu-rust/heap1/actions)
+[![Crates.io](https://img.shields.io/crates/v/heap1.svg)](https://crates.io/crates/heap1)
+[![Docs.rs](https://docs.rs/heap1/badge.svg)](https://docs.rs/heap1)
+
 The simplest possible heap. It's similar to [heap1 in FreeRTOS](https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/main/portable/MemMang/heap_1.c).
 
 Because it's the simplest implementation, it does **NOT** free memory.
@@ -14,7 +18,7 @@ cargo add heap1
 
 Using static global allocator:
 
-```rust
+```rust ignore
 use heap1::{Heap, Inline};
 
 #[global_allocator]
@@ -23,7 +27,7 @@ static HEAP: Heap<Inline<100>> = Heap::new();
 
 You can also initialize the global allocator in two steps to meet specific requirements:
 
-```rust
+```rust ignore
 use core::mem::MaybeUninit;
 use heap1::{Heap, Pointer};
 

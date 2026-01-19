@@ -23,7 +23,9 @@ jobs:
             ./target
           key: cargo-${{ runner.os }}
       - uses: dtolnay/rust-toolchain@stable
+      - run: cargo update
       - run: cargo fmt --all --check
-      - run: cargo clippy
+      - run: cargo clippy -- -D warnings
+      - run: cargo rustdoc -- -D warnings
       - run: cargo build
       - run: cargo test --features=std
