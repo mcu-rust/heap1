@@ -7,7 +7,9 @@
 The simplest possible heap. It's similar to [heap1 in FreeRTOS](https://github.com/FreeRTOS/FreeRTOS-Kernel/blob/main/portable/MemMang/heap_1.c).
 
 Because it's the simplest implementation, it does **NOT** free memory.
-Any memory you drop cannot be reused (it's leaked), so avoid dropping anything whenever possible. It is recommended that you use [embedded-alloc](https://crates.io/crates/embedded-alloc)
+Any memory you drop cannot be reused (it's leaked), so avoid dropping anything whenever possible.
+
+It is recommended that you use [embedded-alloc](https://crates.io/crates/embedded-alloc). This crate is only intended for replacing heap-less modules.
 
 ## Usage
 ```sh
